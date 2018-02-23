@@ -21,7 +21,7 @@
 
 <xwikidoc>
   <web>DocumentsExporter</web>
-  <name>WebHome</name>
+  <name>ConfigurationSheet</name>
   <language/>
   <defaultLanguage/>
   <translation>0</translation>
@@ -30,22 +30,22 @@
   <author>xwiki:XWiki.Admin</author>
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <creationDate>1513094294000</creationDate>
-  <date>1519318071000</date>
-  <contentUpdateDate>1519318071000</contentUpdateDate>
+  <creationDate>1519394879000</creationDate>
+  <date>1519409515000</date>
+  <contentUpdateDate>1519409515000</contentUpdateDate>
   <version>1.1</version>
-  <title>$services.localization.render("docExporter_name")</title>
+  <title/>
   <defaultTemplate/>
   <validationScript/>
   <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
-  <hidden>false</hidden>
+  <hidden>true</hidden>
   <attachment>
     <filename>FileSaver.min.js</filename>
     <filesize>2321</filesize>
-    <author>xwiki:XWiki.Admin</author>
-    <date>1513588704000</date>
+    <author>XWiki.Admin</author>
+    <date>1519409515000</date>
     <version>1.1</version>
     <comment/>
     <content>LyohIEBzb3VyY2UgaHR0cDovL3B1cmwuZWxpZ3JleS5jb20vZ2l0aHViL0ZpbGVTYXZlci5qcy9i
@@ -94,8 +94,8 @@ bCl7ZGVmaW5lKFtdLGZ1bmN0aW9uKCl7cmV0dXJuIHNhdmVBc30pfQo=
   <attachment>
     <filename>csv.min.js</filename>
     <filesize>5065</filesize>
-    <author>xwiki:XWiki.Admin</author>
-    <date>1513588703000</date>
+    <author>XWiki.Admin</author>
+    <date>1519409515000</date>
     <version>1.1</version>
     <comment/>
     <content>IWZ1bmN0aW9uKHQsZSl7ImZ1bmN0aW9uIj09dHlwZW9mIGRlZmluZSYmZGVmaW5lLmFtZD9kZWZp
@@ -192,8 +192,8 @@ Z3VtZW50cy5sZW5ndGgmJihuPWUpLG5ldyB5KHQsZSkuZm9yRWFjaChuKX0seX0pOw==
   <attachment>
     <filename>index.js</filename>
     <filesize>1917</filesize>
-    <author>xwiki:XWiki.Admin</author>
-    <date>1513588705000</date>
+    <author>XWiki.Admin</author>
+    <date>1519409515000</date>
     <version>1.1</version>
     <comment/>
     <content>LypAZmxvdyovCi8qCiAqIENhbGViIEphbWVzIERlTGlzbGUKICogU2F0IE1hciAyMyAwMTo0Mjoy
@@ -235,8 +235,8 @@ VGhlbjsKfQovKjo6IHJldHVybiBuVGhlbjsgKi8KfSkoKTsK
   <attachment>
     <filename>jszip.min.js</filename>
     <filesize>102328</filesize>
-    <author>xwiki:XWiki.Admin</author>
-    <date>1513588701000</date>
+    <author>XWiki.Admin</author>
+    <date>1519409515000</date>
     <version>1.1</version>
     <comment/>
     <content>LyohCgpKU1ppcCB2My4xLjUgLSBBIEphdmFTY3JpcHQgY2xhc3MgZm9yIGdlbmVyYXRpbmcgYW5k
@@ -2037,39 +2037,789 @@ ZT1udWxsLHRoaXMuZGF0YV90eXBlPTIsdGhpcy5hZGxlcj0wfWIuZXhwb3J0cz1kfSx7fV19LHt9
 LFsxMF0pKDEwKX0pOw==
 </content>
   </attachment>
-  <content>{{velocity}}
-= $services.localization.render('docexporter.home.newconfig.title') =
-{{html}}
-&lt;form action="$doc.getURL('create')" class="xform third"&gt;
-  &lt;div&gt;
-    &lt;input type="hidden" name="space" value="$doc.space" /&gt;
-    &lt;input type="hidden" name="template" value="DocumentsExporter.ConfigurationTemplate" /&gt;
-  &lt;/div&gt;
-  &lt;dl&gt;
-    &lt;dt&gt;&lt;label for="page"&gt;$services.localization.render('docexporter.home.newconfig.pagename.label')&lt;/label&gt;&lt;/dt&gt;
-    &lt;dd&gt;&lt;input id="page" name="page" value="" type="text"&gt;&lt;/dd&gt;
-  &lt;/dl&gt;
-  &lt;div class="buttonwrapper"&gt;
-    &lt;input class="button" value="$services.localization.render('create')" name="docreate" type="submit" /&gt;
-  &lt;/div&gt;
-&lt;/form&gt;
-{{/html}}
+  <object>
+    <class>
+      <name>XWiki.JavaScriptExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <name>DocumentsExporter.ConfigurationSheet</name>
+    <number>0</number>
+    <className>XWiki.JavaScriptExtension</className>
+    <guid>0329c06f-4c67-4914-bc1e-2edcdfbf4f0e</guid>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>#set ($document = $xwiki.getDocument("DocumentsExporter.ConfigurationSheet"))
+require(['jquery', 'xwiki-meta', "$document.getAttachmentURL('index.js')", "$document.getAttachmentURL('csv.min.js')", "$document.getAttachmentURL('jszip.min.js')", "$document.getAttachmentURL('FileSaver.min.js')"], function (jq, XM, nThen, CSV, Zip) {
+    var saveAs = window.saveAs;
+    
+    var queryInput = jq('#documentsExporter-query');
+    var fieldsInput = jq('#documentsExporter-fields');
+    var exportButton = jq('#documentsExporter-export');
+    var previewButton = jq('#documentsExporter-preview');
+    var previewResult = jq('#documentsExporter-preview-result');
+	var formattedInput = jq('#documentsExporter-formatted');
+    var separatorInput = jq('#documentsExporter-separator');
+    var saveConfiguration = jq('#documentsExporter-saveConfiguration');
+    
+    var documentsProgress = jq('#documentsExporter-documentsProgess');
+	var attachmentsProgress = jq('#documentsExporter-attachmentsProgess');
+    
+    var restBaseUrl = XM.restURL.slice(0, XM.restURL.indexOf('/wikis/'));
+    var restBaseDocUrl = XM.restURL.slice(0, XM.restURL.indexOf('/spaces/'));
 
-= $services.localization.render('docexporter.home.existing.title') =
-#set($columns = ["doc.title", "query", "doc.author", "doc.date", "_actions"])
-#set($columnsProperties = {
-    "doc.title" : { "type" : "text", "link" : "view", "html" : "false", "sortable":true, "filterable":true },
-    "query" : { "type" : "text", "sortable":true, "filterable":true, "html" : true},
-    'doc.date': {"type":"text","size":10},
-    'doc.author': {"type":"text","size":10,"link":"author"},
-    '_actions': {"sortable":false,"filterable":false,"html":true,"actions":["edit","delete"]}
-})
-#set($options = {
-   "className":"DocumentsExporter.ConfigurationClass",
-   "translationPrefix" : "docexporter.livetable.",
-   "tagCloud" : false,
-   "rowCount": 10
-})
-#livetable("documentsexporter" $columns $columnsProperties $options)
+    var processFields = function (fieldsTxt) {
+        var fields = fieldsTxt.split(',').map(function (f) { return f.trim(); });
+
+        // Get the fields starting with "doc."
+        var docFields = fields.filter(function (f) {
+            return f.indexOf('doc.') === 0; 
+        }).map(function (prop) {
+            return {
+                property: prop.slice(4),
+                id: prop
+            }
+        });
+
+        // Get the fields without class
+        var otherFields = fields.filter(function (f) {
+            return f.indexOf(':') === -1 &amp;&amp; f.indexOf('doc.') !== 0;
+        }).map(function (prop) {
+            return {
+                property: prop,
+                id: prop
+            }
+        });
+
+        // Create a map of classes needed and properties needed for each class
+        var objFields = {};
+        fields.forEach(function (f) {
+            var idx = f.indexOf(':');
+            if (idx === -1) { return; }
+            objFields[f.slice(0, idx)] = objFields[f.slice(0, idx)] || [];
+            objFields[f.slice(0, idx)].push({
+                property: f.slice(idx + 1),
+                id: f
+            });
+        });
+
+		return {
+            docFields: docFields,
+            objFields: objFields,
+            otherFields: otherFields
+        };
+    };
+
+    var getDocumentList = function (query, ctx, cb) {
+        jq.ajax({
+            url:"$xwiki.getURL('DocumentsExporter.DocumentsGetter', 'get', 'xpage=plain&amp;outputSyntax=plain')",
+            dataType: 'json',
+            data: {
+                query: query,
+                fields: encodeURIComponent(JSON.stringify(ctx.fields))
+            },
+        }).done(function (data) {
+            ctx.fields = data.fields;
+            cb (void 0, data.list);
+        }).fail(function (e) {
+            cb(e);
+        });
+    };
+
+    // should return desired href OR false
+    var findRestURL = function (data, type) {
+                console.log(data, type);
+        if (!data.links) { return false; }
+
+        var pattern = new RegExp('/' + type + '$');
+        var f = data.links.filter(function (link) {            
+            return pattern.test(link.rel);
+        });
+        // console.log(f.length === 1 &amp;&amp; f[0].href);
+        return f.length === 1 &amp;&amp; f[0].href;
+    };
+    
+    var parseFullName = function (fullName) {
+        var ref = XWiki.Model.resolve(fullName, XWiki.EntityType.DOCUMENT);
+        var res = [];
+        while (ref &amp;&amp; ref.name) {
+            res.unshift(ref.name);
+            ref = ref.parent;
+        }
+        return res;
+    };
+    
+    var getPageResource = function (doc, ctx) {
+        // doc is a fullName
+        var fields = ctx.fields;
+        var arrayRef = parseFullName(doc);
+        var pageFullName = doc;
+        var pageName = arrayRef.pop();
+        var href = restBaseDocUrl;
+        arrayRef.forEach(function (s) { href += '/spaces/' + s; });
+        href += '/pages/' + pageName;
+
+        var url = href + '?media=json';
+        console.log(url);
+
+        var addToQueue = ctx.addToQueue;
+        var CSV_data = ctx.CSV_data;
+        var addToAttachments = ctx.addToAttachments;
+
+        addToQueue(function (w) {
+            // for each document, collect everything you want to know about it
+            var data = CSV_data[pageFullName] = {}; // basically anything we want in our CSV
+            jq.ajax({
+                url:"$xwiki.getURL('DocumentsExporter.Getter', 'get', 'xpage=plain&amp;outputSyntax=plain')",
+                data: {
+                    formatted: ctx.formatted ? '1' : '0',
+                    document: pageFullName, // something here
+                    fields: encodeURIComponent(JSON.stringify(fields)), // preserve JSON structure because we're not sure what XWiki will do
+                },
+                dataType: 'json'
+            }).done(w(function (json) {
+                jq.extend(true, data, json);
+            }));
+
+            // we will perform asynchronous requests for each href in parallel
+            var wAttach = w();
+            var wDoc = w();
+
+            jq.ajax({
+                url: url,
+                dataType: 'json',
+            }).done(function (json) {
+                var pageName = json.fullName;
+
+                // attachments
+                var needAttachments = fields.docFields.some(function (f) {
+                    return f.property === "attachments"
+                });
+                var attachmentRestURL = findRestURL(json, 'attachments');
+                if (needAttachments &amp;&amp; attachmentRestURL) {
+                    jq.ajax({
+                        url: attachmentRestURL + "?media=json",
+                        dataType: 'json'
+                    }).done(function (jsonA) {
+                        (jsonA.attachments || []).forEach(function (attachment) {
+                            // Push to the CSV
+                            data["doc.attachments"] = data["doc.attachments"]  || [];
+                            data["doc.attachments"].push(attachment.name);
+                            // Push to the download list
+                            addToAttachments(pageName, {
+                                name: attachment.name,
+                                size: attachment.size,
+                                mimeType: attachment.mimeType,
+                                url: attachment.xwikiAbsoluteUrl
+                            });
+                        });
+                    }).always(wAttach);
+                } else { wAttach(); }
+                wDoc();
+            }).fail(function () {
+                wAttach();
+                wDoc();
+            });
+        });
+        addToQueue(function (w) {
+            ctx.incrementDocumentProgress();
+        });
+    };
+
+    var constructCSV = function (ctx, CSV_data, separator) {
+        var fields = ctx.fields;
+        var ids = [{
+            id: 'document_name',
+        	name: "$services.localization.render('docExporter_document')" || 'Document name'
+        }];
+        var addKeys = function (obj) {
+            var id = obj.id;
+            if (ctx.formatted) {
+                ids.push({
+                    id: obj.id,
+                    name: obj.prettyName || obj.id
+                });
+    		}
+            ids.push({
+                id: id + '_raw',
+                name: (obj.prettyName || id) + '*'
+            });
+        };
+        
+        // add all keys out of the 
+        fields.docFields.forEach(function (obj) {
+            addKeys(obj);
+        });
+        Object.keys(fields.objFields).forEach(function (k) {
+        	fields.objFields[k].forEach(function (obj) {
+                addKeys(obj);
+            });
+        });
+        fields.otherFields.forEach(function (obj) {
+            addKeys(obj);
+        });
+        
+        var CSVTable = Object.keys(CSV_data).map(function (k) {
+            var data = CSV_data[k];
+            return ids.map(function (obj) {
+                var id = obj.id;
+                if (id === 'document_name') { return k; }
+                
+                var datum = data[id];
+                if (typeof(datum) === 'undefined') { return ''; }
+                if (datum === null) { return ''; }
+                if (Array.isArray(datum)) { return datum.join(separator); }
+            	return datum;
+            });
+        });
+        
+        var toPrettyName = function (obj) {
+            return obj.name;
+        };
+        CSVTable.unshift(ids.map(toPrettyName));
+        
+        return new CSV(CSVTable).encode();
+    };
+                          
+    /* for wrapping async functions such that they can only be called once */
+    var once = function (f) {
+        var called;
+        return function () {
+            if (called) { return; }
+            called = true;
+            f.apply(this, Array.prototype.slice.call(arguments));
+        };
+    };
+    
+    // jquery ajax doesn't allow fetches of binary data, so use a raw XMLHttpRequest
+    var getBinaryBlob = function (uri, cb) {
+        console.error('fetching binary blob at', uri)
+        var Req = new XMLHttpRequest();
+        Req.open("GET", uri, true);
+        Req.responseType = "arraybuffer";
+        var CB = once(cb);
+        Req.onload = function(oEvent) {
+            CB(void 0, Req.response); // arraybuffer
+        };
+        Req.onerror = function (e) { CB(e); };
+
+        Req.send();
+    };
+
+    // construct a virtual filesystem which will be transformed into a zip
+    var FileSystem = function () {
+		var root = new Zip();
+        var structure = {};
+        
+        var add = function (path, name, file, args) {
+            var l = path.length;
+            var dir = root;
+            for (var i = 0; i &lt; l; i++) {
+                if (structure[path[i]]) {
+                    dir = structure[path[i]];
+                } else {
+                    dir = structure[path[i]] = dir.folder(path[i]);
+                }
+            }
+            dir.file(name, file, args);
+        };
+        var zip = function (cb) {
+			root.generateAsync({type: 'blob'})
+            .then(function (content) {
+            	cb(void 0, content);
+            });
+        };
+        return {
+			add: add,
+            zip: zip,
+        };
+    };
+
+    var pending = false;
+    var onClick = function () {
+        if (pending) { return console.error("Export already in progress"); }
+        pending = true;
+        
+        // we report progress of downloads via these elements
+        // so clear them in case people are running an export a second time
+        documentsProgress.text("");
+        attachmentsProgress.text("");
+        // clear the preview table if it exists
+        previewResult.html('');
+
+        // get all the values from our inputs
+        var fieldsVal = fieldsInput.val().replace(/[\n\r]/g, function (c) {
+        	return '';  // remove line breaks
+        });
+        var fields = processFields(fieldsVal);
+        var query = queryInput.val().replace(/[\n\r]/g, function (c) {
+        	return '';  // remove line breaks
+        });
+        var separator = separatorInput.val() || ", ";
+
+        // ctx (context) is passed into several functions to make function signatures simpler
+        var ctx = {};
+        ctx.fields = fields;
+        ctx.formatted = formattedInput.is(':checked');
+
+        var queue;
+        // add to queue schedules the next step in our procedure
+        // see nThen (https://github.com/cjdelisle/nthen)
+        var addToQueue = ctx.addToQueue = function (f) {
+            queue = queue.nThen(f);
+        };
+
+        var attachments = {};
+        // to add resources to the list of attachments to download
+        var addToAttachments = ctx.addToAttachments = function (page, obj) {
+            attachments[page] = attachments[page] || [];
+            attachments[page].push(obj);
+        };
+        // for any data that should be added to the resulting csv
+        var CSV_data = ctx.CSV_data = {};
+
+        // create a 'filesystem' which will be transformed into a .zip file
+        var fs = FileSystem();
+
+        // for the list of documents which will be added to the .zip file
+        var documentList;
+        
+        // for our progress indicators
+        var documentCount = 0;
+        var documentsProcessed = 0;
+     	var attachmentCount = 0;
+        var attachmentsProcessed = 0;
+        
+        
+        var failure = false;
+        queue = nThen(function (w) {
+            // wrapping an async call in 'w' makes it so that the following nThen block is deferred
+            // wrap multiple functions in one block, and they will be executed in parallel
+            getDocumentList(query, ctx, w(function (e, docList) {
+                if (e) {
+                    console.error(e);
+                    failure = true;
+                    window.alert("$services.localization.render('docExporter_docListError')");
+                    return;
+                }
+                documentList = docList;
+                documentCount = docList.length;
+            }));
+        }).nThen(function (w) {
+            // don't proceed if you weren't able to retreive a document list
+            if (failure) { return; }
+            
+            // also bail out if the result is not an array
+            if (!Array.isArray(documentList)) {
+                return void console.error("Expected documentList to be an Array");
+            }
+            
+            // define a function to increment progress indicator and display the updated value
+            ctx.incrementDocumentProgress = function () {
+                documentsProcessed++;
+                documentsProgress.text("" + (documentsProcessed + ' / ' + documentCount));
+            };
+            
+			// iterate over the list of documents, and schedule ajax calls for each entry            
+            documentList.forEach(function (doc) {
+                getPageResource(doc, ctx);
+            });
+
+            // schedule the CSV construction after the documents' metadata has been retrieved
+	        addToQueue(function () {
+                var csv = constructCSV(ctx, CSV_data, separator);
+            	fs.add([], 'export.csv', csv);
+            });
+
+            // define a function to increment and display the attachment download progress
+            ctx.incrementAttachmentProgress = function () {
+                attachmentsProcessed++;
+                attachmentsProgress.text("" + (attachmentsProcessed + ' / ' + attachmentCount));
+            };
+            
+            // queue up this task, which will be deferred until all the document metadata has been fetched
+            // it will iterate over all the pages, and schedule downloads of their attachments
+            addToQueue(function () {
+                // add attachment hrefs to queue...
+                Object.keys(attachments).forEach(function (page_name, i) {
+                    var page_attachments = attachments[page_name]; 
+                    // var path = parseFullName(page_name);
+                    page_attachments.forEach(function (obj) {
+                        attachmentCount++;
+                        // obj = {name, size, mimeType, url}
+                        var filename = obj.name;
+                        addToQueue(function (w) {
+                            // add files to your zip as they download
+                            getBinaryBlob(obj.url, w(function (e, arrayBuffer) {
+                                if (e) { return console.error("failed to fetch blob"); }
+                                fs.add(['' + (i + 2)], filename, new Blob([arrayBuffer]));
+                            }));
+                        });
+                        // schedule a UI update after each download completes
+                        addToQueue(function (w) {
+							ctx.incrementAttachmentProgress();
+                        });
+                    });
+                });
+                
+                // when all your attachments have been downloaded, create a zip file
+                // prompt the user to download it
+                addToQueue(function (w) {
+                    // console.log(CSV_data);
+                    fs.zip(function (e, content) {
+                        saveAs(content, "export.zip");
+                    });
+                });
+                // finally, unset 'pending' so that users can do another export if they want
+                addToQueue(function () {
+                    // unset pending after everything finishes
+                    pending = false;
+                });
+            });
+        });
+    };
+
+    exportButton.click(onClick);
+    
+    var onPreview = function () {
+        if (pending) { return console.error("Export already in progress"); }
+        pending = true;
+        
+        documentsProgress.text("");
+        attachmentsProgress.text("");
+        previewResult.html('');
+
+        var query = queryInput.val().replace(/[\n\r]/g, function (c) {
+            return '';  // remove line breaks
+        });
+        jq.ajax({
+            url:"$xwiki.getURL('DocumentsExporter.DocumentsGetter', 'get', 'xpage=plain&amp;outputSyntax=plain')",
+            dataType: 'json',
+            data: {
+                query: query,
+                preview: '1'
+            },
+        }).done(function (data) {
+            if (data &amp;&amp; data.error === "E_TOO_MANY_RESULTS") {
+                previewResult.html("$services.localization.render('docExporter_preview_errorTooMany')");
+                return;
+            }
+            if (!data || typeof(data) !== "object" || !Array.isArray(data.list)) {
+                previewResult.html("$services.localization.render('docExporter_preview_error')");
+                return;
+            }
+            var list = data.list || [];
+            jq('&lt;h2&gt;', {id: 'documentsExporter-preview-title'})
+                .text("$services.localization.render('docExporter_preview_title')").appendTo(previewResult);
+            var table = jq('&lt;table&gt;', {id: 'documentsExporter-table'}).appendTo(previewResult);
+            var header = jq('&lt;thead&gt;').appendTo(table);
+            jq('&lt;th&gt;').text("$services.localization.render('docExporter_table_name')").appendTo(header);
+            jq('&lt;th&gt;').text("$services.localization.render('docExporter_table_author')").appendTo(header);
+            jq('&lt;th&gt;').text("$services.localization.render('docExporter_table_date')").appendTo(header);
+            list.forEach(function (doc) {
+                var line = jq('&lt;tr&gt;').appendTo(table);
+                jq('&lt;td&gt;', {title: doc.name}).text(doc.name).appendTo(line);
+                jq('&lt;td&gt;', {title: doc.author}).text(doc.author).appendTo(line);
+                var dateStr = new Date(doc.date).toLocaleDateString();
+                jq('&lt;td&gt;', {title: dateStr}).text(dateStr).appendTo(line);
+            });
+            console.log(list);
+        }).fail(function (e) {
+            console.error(e);
+            window.alert("$services.localization.render('docExporter_docListError')");
+        }).always(function () {
+            pending = false;
+        });
+    };
+    previewButton.click(onPreview);
+    
+    var onSaveConfiguration = function () {
+        if (pending) { return console.error("Export already in progress"); }
+        pending = true;
+
+        var values = {};
+        values.fields = fieldsInput.val();
+        values.query = queryInput.val();
+        values.separator = separatorInput.val();
+        values.formatted = formattedInput.is(':checked') ? '1' : '0';
+        
+        var q = nThen(function () {
+            
+        });
+        
+        var restQuery = XM.restURL + '/objects/DocumentsExporter.ConfigurationClass/0/properties/';
+        previewResult.html("$services.localization.render('docExporter_formSaving')");
+
+        Object.keys(values).forEach(function (prop) {
+            q = q.nThen(function (w) {
+                console.log(prop, values[prop]);
+                jq.ajax({
+                    url: restQuery + prop + '?media=json',
+                    type: 'PUT',
+                    contentType: 'text/plain',
+                    data: values[prop]
+                }).done(function () {
+                    console.log("done");
+                }).fail(function (e) {
+                    console.log("failed to save configuration value");                        
+                }).always(w());
+            });
+        });
+
+        q.nThen(function () {
+            pending = false;
+            previewResult.html("$services.localization.render('docExporter_formSaved')");
+        });
+    };
+    saveConfiguration.click(onSaveConfiguration)
+});
+</code>
+    </property>
+    <property>
+      <name>Documents Exporter</name>
+    </property>
+    <property>
+      <parse>1</parse>
+    </property>
+    <property>
+      <use>currentPage</use>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>XWiki.StyleSheetExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <contentType>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>contentType</name>
+        <number>6</number>
+        <prettyName>Content Type</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>CSS|LESS</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </contentType>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <name>DocumentsExporter.ConfigurationSheet</name>
+    <number>0</number>
+    <className>XWiki.StyleSheetExtension</className>
+    <guid>431b127c-452f-4ce4-968b-a904c621983d</guid>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>textarea[id^=documentsExporter] {
+    width: 80%;
+    height: 100px;
+}
+
+#documentsExporter-table {
+    width: 100%;
+    table-layout: fixed;
+}
+#documentsExporter-table td {
+    padding: 0 20px;
+}
+#documentsExporter-table td:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+</code>
+    </property>
+    <property>
+      <contentType>CSS</contentType>
+    </property>
+    <property>
+      <name/>
+    </property>
+    <property>
+      <parse/>
+    </property>
+    <property>
+      <use>currentPage</use>
+    </property>
+  </object>
+  <content>{{velocity}}
+#set($discard = $xwiki.jsx.use('DocumentsExporter.ConfigurationSheet'))
+#set($discard = $xwiki.ssx.use('DocumentsExporter.ConfigurationSheet'))
+{{html clean="false"}}
+&lt;div class="xform"&gt;
+  #set ($export = $doc.getObject("DocumentsExporter.ConfigurationClass"))
+
+  &lt;dl&gt;
+    &lt;dt&gt;&lt;label for="documentsExporter-query"&gt;$services.localization.render("docExporter_query")&lt;/label&gt;&lt;/dt&gt;
+    &lt;dd&gt;&lt;textarea id="documentsExporter-query" name="DocumentsExporter.ConfigurationClass_${export.number}_query"&gt;$!export.getProperty('query').value&lt;/textarea&gt;&lt;/dd&gt;
+
+    &lt;dt&gt;&lt;label for="documentsExporter-fields"&gt;$services.localization.render("docExporter_fields")&lt;/label&gt;&lt;/dt&gt;
+    &lt;dd&gt;&lt;textarea id="documentsExporter-fields" name="DocumentsExporter.ConfigurationClass_${export.number}_fields"&gt;$!export.getProperty('fields').value&lt;/textarea&gt;&lt;/dd&gt;
+
+    &lt;dt&gt;&lt;label for="documentsExporter-formatted"&gt;$services.localization.render("docExporter_formatted")&lt;/label&gt;&lt;/dt&gt;
+    &lt;dd&gt;&lt;input type="checkbox" id="documentsExporter-formatted" name="DocumentsExporter.ConfigurationClass_${export.number}_formatted"#if ("$!export.getProperty('formatted').value" != "0")checked="checked"#end /&gt;&lt;/dd&gt;
+
+    &lt;dt&gt;&lt;label for="documentsExporter-separator"&gt;$services.localization.render("docExporter_separator")&lt;/label&gt;&lt;/dt&gt;
+    &lt;dd&gt;&lt;input type="text" value="$!export.getProperty('separator').value" name="DocumentsExporter.ConfigurationClass_${export.number}_separator" id="documentsExporter-separator" &gt;&lt;/dd&gt;
+  &lt;/dl&gt;
+
+  &lt;div&gt;
+    &lt;div id="documentsExporter-documentsProgess"&gt;&lt;/div&gt;
+    &lt;div id="documentsExporter-attachmentsProgess"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div id="documentsExporter-preview-result"&gt;&lt;/div&gt;
+
+  &lt;div class="wikimodel-emptyline"&gt;&lt;/div&gt;
+
+  #if ($xcontext.action != 'edit')
+    &lt;div class="buttonwrapper"&gt;
+      &lt;button id="documentsExporter-saveConfiguration" class="button btn btn-success"&gt;$services.localization.render("docExporter_saveConfiguration")&lt;/button&gt;
+      &lt;button id="documentsExporter-export" class="button btn btn-primary"&gt;$services.localization.render("docExporter_export")&lt;/button&gt;
+      &lt;button id="documentsExporter-preview" class="button btn btn-secondary"&gt;$services.localization.render("docExporter_preview")&lt;/button&gt;
+    &lt;/div&gt;
+  #end
+&lt;/div&gt;
+{{/html}}
 {{/velocity}}</content>
 </xwikidoc>

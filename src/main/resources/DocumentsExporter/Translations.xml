@@ -101,5 +101,19 @@ doc_creator=Créateur
 doc_creationDate=Date de création
 doc_title=Titre
 doc_author=Auteur
-doc_parent=Document parent</content>
+doc_parent=Document parent
+
+## home page ##
+docexporter.home.newconfig.title=Nouvelle configuration d'export
+docexporter.home.newconfig.pagename.label=Nom de la page de configuration
+docexporter.home.existing.title=Configurations existantes
+
+## livetable translations ##
+docexporter.livetable.doc.title=Nom du document
+docexporter.livetable.doc.location=Emplacement
+docexporter.livetable.query=Requête de documents
+docexporter.livetable.fields=Champs à exporter
+docexporter.livetable.doc.author=Dernièr auteur
+docexporter.livetable.doc.date=Dernière modification
+docexporter.livetable._actions=Actions</content>
 </xwikidoc>
