@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<xwikidoc>
+  <web>DocumentsExporter</web>
+  <name>Getter</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <parent>DocumentsExporter.WebHome</parent>
+  <creator>xwiki:XWiki.Admin</creator>
+  <author>xwiki:XWiki.Admin</author>
+  <customClass/>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <creationDate>1513588738000</creationDate>
+  <date>1513853954000</date>
+  <contentUpdateDate>1513853920000</contentUpdateDate>
+  <version>1.1</version>
+  <title>Getter</title>
+  <defaultTemplate/>
+  <validationScript/>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>true</hidden>
+  <content>{{velocity wiki=false}}
+##
+#set ($mymap = {})
+##
+#* Get the fields we want to extract from the document
+ * $fields is a map:
+ {
+ 	docFields: [], // List of document properties (doc.content, doc.title, etc.)
+    objFields: [], // List of object properties (e.g. XWiki.XWikiUsers:username)
+    otherFields: [] // List of properties without class (e.g. number)
+ }
+ * A property is represented by an object:
+ {
+ 	id: 'doc.content',
+    property: 'content'
+ }
+*#
+#set ($encodedFields = $request.get('fields'))
+#set ($fieldsTxt = $util.decodeURI($encodedFields))
+#set ($fields = $jsontool.parse($fieldsTxt))
+##
+## Get the document from which we want to extract the properties
+#set ($document = $xwiki.getDocument($request.get("document")))
+##
+## Check if we also want to extract the formatted values of the properties
+#set ($formatted = $request.get("formatted"))
+##
+## Add the document properties to the result map
+#foreach ($prop in $fields.docFields)
+    #set ($name = $prop.property)
+    #if ($name == "content")
+    	#set ($mymap["${prop.id}_raw"] = $document.getContent())
+        #if ($formatted == "1")
+            #set ($mymap["${prop.id}"] = $document.getRenderedContent())
+        #end
+    #elseif ($name == "attachments")
+    #elseif ($name == "author")
+    	#set ($mymap["${prop.id}"] = $document.getAuthor())
+    #elseif ($name == "creator")
+    	#set ($mymap["${prop.id}"] = $document.getCreator())
+    #elseif ($name == "creationDate")
+    	#set ($mymap["${prop.id}"] = $document.getCreationDate())
+    #elseif ($name == "title")
+        #set ($mymap["${prop.id}"] = "$document.getTitle()")
+    #elseif ($name == "parent")
+        #set ($mymap["${prop.id}"] = $document.getParent())
+    #elseif ($name == "children")
+        #set ($mymap["${prop.id}"] = $document.getChildren())
+    #end
+#end
+##
+## Add the object properties to the result map
+#foreach ($entry in $fields.objFields.entrySet())
+    #set ($obj = $document.getObject($entry.key))
+    #foreach ($prop in $entry.value)
+        ## Value stored in the database
+        #set ($rawValue = $obj.getProperty($prop.property).value)
+        #set ($mymap["${prop.id}_raw"] = $rawValue)
+		## Displayed value
+        #set ($displayed = $document.display($prop.property, "view", $entry.key).replaceFirst($regextool.quote('{{html clean="false" wiki="false"}}'), '').replaceAll("$regextool.quote('{{/html}}')$", ''))
+        #set ($propClass = $obj.xWikiClass.get($prop.property).getType())
+        ## If we have a DBList or DBTreeList, check if we can find a map to return a list of "displayed" values 
+        #if ($rawValue.class.name.startsWith("com.xpn.xwiki.objects.ListProperty") || $propClass == "DBListClass" || $propClass == "DBTreeListClass")
+            #set ($map = $obj.xWikiClass.get($prop.property).getMapValues())
+            #if ("$!map" != "" &amp;&amp; "$map" != "{}")
+            	## We have a map of raw values &lt;=&gt; displayed values: get the displayed values
+                ## We have 2 cases here: the result can be a string or a list (if it is a multiselct property)
+                #if ($rawValue.class.name.startsWith("com.xpn.xwiki.objects.ListProperty"))
+                    #set ($value = [])
+                    #foreach ($v in $rawValue)
+                        #set ($discard = $value.add($map[$v].value))
+                    #end
+                #else
+                    #set ($value = $map[$rawValue].value)
+                #end
+            #else
+                ## No map, return the "displayed" value
+                #set ($value = $displayed)
+            #end
+        #else
+        	## It is a not DBList or DBTreeList: return the displayed value
+            #set ($value = $displayed)
+        #end
+        ##
+        #set ($mymap["${prop.id}"] = $value)
+    #end
+#end
+##
+## Add the properties with no class specified
+#foreach ($prop in $fields.otherFields)
+    #set ($obj = $document.getFirstObject($prop.property))
+    #set ($rawValue = $obj.getProperty($prop.property).value)
+    #set ($mymap["${prop.id}_raw"] = $document.getValue($prop.property))
+        #set ($displayed = $obj.display($prop.property, "view").replaceFirst($regextool.quote('{{html clean="false" wiki="false"}}'), '').replaceAll("$regextool.quote('{{/html}}')$", ''))
+        #set ($propClass = $obj.xWikiClass.get($prop.property).getType())
+        ## If we have a DBList or DBTreeList, check if we can find a map to return a list of "displayed" values 
+        #if ($rawValue.class.name.startsWith("com.xpn.xwiki.objects.ListProperty") || $propClass == "DBListClass" || $propClass == "DBTreeListClass")
+            #set ($map = $obj.xWikiClass.get($prop.property).getMapValues())
+            #if ("$!map" != "" &amp;&amp; "$map" != "{}")
+            	## We have a map of raw values &lt;=&gt; displayed values: get the displayed values
+                ## We have 2 cases here: the result can be a string or a list (if it is a multiselct property)
+                #if ($rawValue.class.name.startsWith("com.xpn.xwiki.objects.ListProperty"))
+                    #set ($value = [])
+                    #foreach ($v in $rawValue)
+                        #set ($discard = $value.add($map[$v].value))
+                    #end
+                #else
+                    #set ($value = $map[$rawValue].value)
+                #end
+            #else
+                ## No map, return the "displayed" value
+                #set ($value = $displayed)
+            #end
+        #else
+        	## It is a not DBList or DBTreeList: return the displayed value
+            #set ($value = $displayed)
+        #end
+		##
+        #set ($mymap["${prop.id}"] = $value)
+#end
+##
+## Serialize the result and return the page as JSON
+#set($discard = $response.setContentType("application/json"))
+#set($out = $jsontool.serialize($mymap))
+$response.getOutputStream().write($out.getBytes("UTF-8"))
+$xcontext.setFinished(true)
+{{/velocity}}</content>
+</xwikidoc>
