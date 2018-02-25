@@ -28,7 +28,7 @@
     <version>6.4-9</version>
   </parent>
   <groupId>org.xwiki.contrib.application-export-spreadsheet</groupId>
-  <artifactId>xwiki-application-export-spreadsheet</artifactId>
+  <artifactId>xwiki-application-export-spreadsheet-ui</artifactId>
   <name>Spreadsheet export application</name>
   <description>Application to exports a list of documents from the wiki to a spreadsheet format (currently csv but other formats could be added). The list of documents and the columns of the spreadsheet to export are customizable and the columns can be read from document objects.</description>
   <packaging>xar</packaging>
