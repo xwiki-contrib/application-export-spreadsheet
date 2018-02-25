@@ -32,7 +32,7 @@
   <name>Spreadsheet export application</name>
   <description>Application to exports a list of documents from the wiki to a spreadsheet format (currently csv but other formats could be added). The list of documents and the columns of the spreadsheet to export are customizable and the columns can be read from document objects.</description>
   <packaging>xar</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <properties>
     <xwiki.version>6.4.8</xwiki.version>
   </properties>
@@ -74,6 +74,6 @@
     <connection>scm:git:git://github.com/xwiki-contrib/application-export-spreadsheet.git</connection>
     <developerConnection>scm:git:git@github.com:xwiki-contrib/application-export-spreadsheet.git</developerConnection>
     <url>https://github.com/xwiki-contrib/application-export-spreadsheet/tree/master/</url>
-    <tag>HEAD</tag>
+    <tag>xwiki-application-export-spreadsheet-ui-1.0</tag>
   </scm>
 </project>
