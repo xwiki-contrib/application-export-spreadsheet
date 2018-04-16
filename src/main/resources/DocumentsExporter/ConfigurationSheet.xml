@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -2224,8 +2225,8 @@ require(['jquery', 'xwiki-meta', "$document.getAttachmentURL('index.js')", "$doc
         var pageFullName = doc;
         var pageName = arrayRef.pop();
         var href = restBaseDocUrl;
-        arrayRef.forEach(function (s) { href += '/spaces/' + s; });
-        href += '/pages/' + pageName;
+        arrayRef.forEach(function (s) { href += '/spaces/' + encodeURIComponent(s); });
+        href += '/pages/' + encodeURIComponent(pageName);
 
         var url = href + '?media=json';
         console.log(url);
@@ -2233,7 +2234,9 @@ require(['jquery', 'xwiki-meta', "$document.getAttachmentURL('index.js')", "$doc
         var addToQueue = ctx.addToQueue;
         var CSV_data = ctx.CSV_data;
         var addToAttachments = ctx.addToAttachments;
-
+        
+        // addToAttachments(pageName, null);
+        
         addToQueue(function (w) {
             // for each document, collect everything you want to know about it
             var data = CSV_data[pageFullName] = {}; // basically anything we want in our CSV
@@ -2361,7 +2364,7 @@ require(['jquery', 'xwiki-meta', "$document.getAttachmentURL('index.js')", "$doc
     
     // jquery ajax doesn't allow fetches of binary data, so use a raw XMLHttpRequest
     var getBinaryBlob = function (uri, cb) {
-        console.error('fetching binary blob at', uri)
+        console.log('fetching binary blob at', uri)
         var Req = new XMLHttpRequest();
         Req.open("GET", uri, true);
         Req.responseType = "arraybuffer";
@@ -2448,6 +2451,9 @@ require(['jquery', 'xwiki-meta', "$document.getAttachmentURL('index.js')", "$doc
 
         // create a 'filesystem' which will be transformed into a .zip file
         var fs = FileSystem();
+        var currentSize = 0;
+        var MAX_SIZE = 1024 * 1024 * 500; // Max zip file size should be 500MB
+        var zip_suffix = 0;
 
         // for the list of documents which will be added to the .zip file
         var documentList;
@@ -2510,12 +2516,35 @@ require(['jquery', 'xwiki-meta', "$document.getAttachmentURL('index.js')", "$doc
             addToQueue(function () {
                 // add attachment hrefs to queue...
                 Object.keys(attachments).forEach(function (page_name, i) {
-                    var page_attachments = attachments[page_name]; 
+                    var page_attachments = attachments[page_name];
                     // var path = parseFullName(page_name);
                     page_attachments.forEach(function (obj) {
+                        if (!obj) { return; }
                         attachmentCount++;
                         // obj = {name, size, mimeType, url}
                         var filename = obj.name;
+                        if (currentSize &gt; MAX_SIZE) {
+                            // download current fs, create a new one and reset currentSize
+                            addToQueue(function (w) {
+                                fs.zip(w(function (e, content) {
+                                    // waitFor should proceed to next step here...
+                                    // create new fileSystem here
+                                    fs = FileSystem();
+                                    var zipName;
+                                    if (zip_suffix === 0) {
+                                        zipName = 'export.zip';
+                                        zip_suffix++;
+                                    } else {
+                                        zipName = 'export_' + (zip_suffix++) + '.zip';
+                                    }
+                   					console.log("saving current zip as %s", zipName)                 ;
+                                    saveAs(content, zipName);
+                                }));
+                            });
+                            // reset currentSize
+                            currentSize = 0;
+                        }
+                        currentSize += obj.size;
                         addToQueue(function (w) {
                             // add files to your zip as they download
                             getBinaryBlob(obj.url, w(function (e, arrayBuffer) {
@@ -2535,7 +2564,14 @@ require(['jquery', 'xwiki-meta', "$document.getAttachmentURL('index.js')", "$doc
                 addToQueue(function (w) {
                     // console.log(CSV_data);
                     fs.zip(function (e, content) {
-                        saveAs(content, "export.zip");
+                        var zipName;
+                        if (zip_suffix === 0) {
+                            zipName = 'export.zip';
+                            zip_suffix++;
+                        } else {
+                            zipName = 'export_' + (zip_suffix++) + '.zip';
+                        }
+                        saveAs(content, zipName);
                     });
                 });
                 // finally, unset 'pending' so that users can do another export if they want
